@@ -4,6 +4,8 @@ import type React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { Terminal } from 'lucide-react';
 
+import Help from './help';
+
 function App() {
   interface Command {
     input: string;
@@ -14,8 +16,43 @@ function App() {
   const [currentInput, setCurrentInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const executeCommand = (input: string) => {
+    const sanitisedInput = input.trim().toLowerCase();
+
+    switch (sanitisedInput) {
+      case 'help':
+        setCommands((prev) => [
+          ...prev,
+          {
+            input: input,
+            output: <Help />,
+            timestamp: new Date().toLocaleTimeString(),
+          },
+        ]);
+        break;
+      default:
+        setCommands((prev) => [
+          ...prev,
+          {
+            input: input,
+            output: (
+              <span className='text-red-500'>Command not found: {input}</span>
+            ),
+            timestamp: new Date().toLocaleTimeString(),
+          },
+        ]);
+        break;
+    }
+
+    console.log(sanitisedInput);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (currentInput.trim()) {
+      executeCommand(currentInput);
+      setCurrentInput('');
+    }
   };
 
   const focusInput = () => {
