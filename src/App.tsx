@@ -45,7 +45,7 @@ function App() {
           <div className='flex items-center justify-between bg-gray-800 px-4 py-2 rounded-t-lg border-b border-gray-700'>
             <div className='flex items-center space-x-2 text-gray-400 text-sm'>
               <Terminal className='w-4 h-4' />
-              <span>portfolio-terminal</span>
+              <span>Lewis Blount - Portfolio</span>
             </div>
           </div>
           <div
