@@ -15,6 +15,7 @@ function App() {
   const [commands, setCommands] = useState<Command[]>([]);
   const [currentInput, setCurrentInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   const executeCommand = (input: string) => {
     const sanitisedInput = input.trim().toLowerCase();
@@ -29,6 +30,9 @@ function App() {
             timestamp: new Date().toLocaleTimeString(),
           },
         ]);
+        break;
+      case 'clear':
+        setCommands([]);
         break;
       default:
         setCommands((prev) => [
@@ -75,6 +79,12 @@ function App() {
     setCommands([welcomeCommand]);
   }, []);
 
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [commands]);
+
   return (
     <div className='min-h-screen bg-black text-green-400 font-mono'>
       <div className='container mx-auto p-4 max-w-4xl'>
@@ -86,6 +96,7 @@ function App() {
             </div>
           </div>
           <div
+            ref={terminalRef}
             className='p-4 h-[27rem] overflow-y-auto cursor-text'
             onClick={focusInput}
           >

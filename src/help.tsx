@@ -21,6 +21,9 @@ export default function Help() {
         <li>
           <span className='text-green-400'>help</span> - Show this help message
         </li>
+        <li>
+          <span className='text-green-400'>clear</span> - Clear the terminal
+        </li>
       </ul>
     </div>
   );
