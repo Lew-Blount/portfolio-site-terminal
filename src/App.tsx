@@ -78,7 +78,7 @@ function App() {
   return (
     <div className='min-h-screen bg-black text-green-400 font-mono'>
       <div className='container mx-auto p-4 max-w-4xl'>
-        <div className='bg-gray-900 rounded-lg p-4 shadow-2l border border-gray-700'>
+        <div className='bg-gray-900 rounded-lg shadow-2l border border-gray-700'>
           <div className='flex items-center justify-between bg-gray-800 px-4 py-2 rounded-t-lg border-b border-gray-700'>
             <div className='flex items-center space-x-2 text-gray-400 text-sm'>
               <Terminal className='w-4 h-4' />
